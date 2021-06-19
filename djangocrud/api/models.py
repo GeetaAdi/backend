@@ -112,7 +112,7 @@ class Responses(models.Model):
     # comment2 = models.CharField(max_length=1000, blank=True, null=True, default='')
 
     def cultural_Destructiveness(self):
-        url = 'http://127.0.0.1:7002/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic) + '&value=' + str(self.culturalDestructiveness)+ '&field=culturalDestructivenessresponse'
+        url = 'http://cpcdp.tedoratech.com/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic) + '&value=' + str(self.culturalDestructiveness)+ '&field=culturalDestructivenessresponse'
         result = int(self.culturalDestructiveness.split(". ")[1])
         result = abs(result - 1)
         if result >= 2:
@@ -139,7 +139,7 @@ class Responses(models.Model):
     cultural_Destructiveness.allow_tags = True
 
     def cultural_Incapacity(self):
-        url = 'http://127.0.0.1:7002/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalIncapacity)+ '&field=culturalIncapacityresponse'
+        url = 'http://cpcdp.tedoratech.com/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalIncapacity)+ '&field=culturalIncapacityresponse'
         result = int(self.culturalIncapacity.split(". ")[1])
         result = abs(result - 2)
         if result >= 2:
@@ -166,7 +166,7 @@ class Responses(models.Model):
     cultural_Incapacity.allow_tags = True
 
     def cultural_Blindness(self):
-        url = 'http://127.0.0.1:7002/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalBlindness)+ '&field=culturalBlindnessresponse'
+        url = 'http://cpcdp.tedoratech.com/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalBlindness)+ '&field=culturalBlindnessresponse'
         result = int(self.culturalBlindness.split(". ")[1])
         result = abs(result - 3)
         if result >= 2:
@@ -193,7 +193,7 @@ class Responses(models.Model):
     cultural_Blindness.allow_tags = True
 
     def cultural_PreCompetence(self):
-        url = 'http://127.0.0.1:7002/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalPreCompetence)+ '&field=culturalPreCompetenceresponse'
+        url = 'http://cpcdp.tedoratech.com/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalPreCompetence)+ '&field=culturalPreCompetenceresponse'
         result = int(self.culturalPreCompetence.split(". ")[1])
         result = abs(result - 4)
         if result >= 2:
@@ -220,7 +220,7 @@ class Responses(models.Model):
     cultural_PreCompetence.allow_tags = True
 
     def cultural_Competence(self):
-        url = 'http://127.0.0.1:7002/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalCompetence)+ '&field=culturalCompetenceresponse'
+        url = 'http://cpcdp.tedoratech.com/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalCompetence)+ '&field=culturalCompetenceresponse'
         result = int(self.culturalCompetence.split(". ")[1])
         result = abs(result - 5)
         if result >= 2:
@@ -247,7 +247,7 @@ class Responses(models.Model):
     cultural_Competence.allow_tags = True
 
     def cultural_Proficiency(self):
-        url = 'http://127.0.0.1:7002/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalProficiency)+ '&field=culturalProficiencyresponse'
+        url = 'http://cpcdp.tedoratech.com/api/scores/?response_id=' + str(self.id) + '&user_id=' + str(self.user.id) + '&topic=' + str(self.topic)+ '&value=' + str(self.culturalProficiency)+ '&field=culturalProficiencyresponse'
         # url = (
         #     reverse("admin:api_cpcqresponses_changelist")
         #     + "?"
@@ -294,7 +294,7 @@ class Scores(models.Model):
         verbose_name_plural = "Scores"
     def email_send(self):
         print(self.user.id)
-        url = 'http://127.0.0.1:7002/api/email/?user_id=' + str(self.user.id)
+        url = 'http://cpcdp.tedoratech.com/api/email/?user_id=' + str(self.user.id)
         # return format_html('<form action="{}" method="post"><input type="submit" value="Send Email To User"></form>', url)
         # if self.email_status == b'\x00':
         if self.email_status ==False:

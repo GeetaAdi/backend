@@ -68,9 +68,9 @@ def email(request):
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
         send_mail( subject, message, email_from, recipient_list )
-        return HttpResponseRedirect('http://127.0.0.1:7002/admin/api/scores/')
+        return HttpResponseRedirect('http://cpcdp.tedoratech.com/admin/api/scores/')
     else:
-        return HttpResponseRedirect('http://127.0.0.1:7002/admin/api/scores/')
+        return HttpResponseRedirect('http://cpcdp.tedoratech.com/admin/api/scores/')
 
 def scores(request):
     response_id = request.GET.get('response_id', '')
@@ -238,7 +238,7 @@ def scores(request):
                             if each_ != 'category':
                                 avg.append(sum(each.scores[each_]) / len(each.scores[each_]))
                 Scores.objects.create(user = user, username=user.username, totalScore=sum(avg) / len(avg), duration = duration)            
-            return HttpResponseRedirect('http://127.0.0.1:7002/admin/api/responses/')
+            return HttpResponseRedirect('http://cpcdp.tedoratech.com/admin/api/responses/')
     else:
         form = ScoreForm()
         rForms = {}
