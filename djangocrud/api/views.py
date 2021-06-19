@@ -202,7 +202,7 @@ def scores(request):
                         stat.scores[value] = score
                     else:
                         index = stat.scores['category'].index(field)
-                        stat.scores[keys[index + 1]] = score
+                        stat.scores[keys[index]] = score
                     serializer_ = CPCQResponsesSerializer(stat, data = stat.scores, partial=True)
                     if serializer_.is_valid():
                         serializer_.save()

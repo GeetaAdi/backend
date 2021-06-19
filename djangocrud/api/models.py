@@ -123,11 +123,11 @@ class Responses(models.Model):
                 else:
                     if r.status == True and 'culturalDestructivenessresponse' in r.scores['category']:                        
                         if len(list(r.scores.keys())) == 2:
-                            res = list(r.scores.keys())[1]
+                            res = list(r.scores.keys())[0]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalDestructiveness + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                         else:
                             index = r.scores['category'].index('culturalDestructivenessresponse')
-                            res = list(r.scores.keys())[index + 1]
+                            res = list(r.scores.keys())[index]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalDestructiveness + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                     else:
                         return format_html('<a href="{}"><span style="color: #cc0033; font-weight: bold;">{}</span></a>', url, self.culturalDestructiveness)
@@ -150,11 +150,11 @@ class Responses(models.Model):
                 else:                    
                     if r.status == True and 'culturalIncapacityresponse' in r.scores['category']:
                         if len(list(r.scores.keys())) == 2:
-                            res = list(r.scores.keys())[1]
+                            res = list(r.scores.keys())[0]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalIncapacity + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                         else:
                             index = r.scores['category'].index('culturalIncapacityresponse')
-                            res = list(r.scores.keys())[index + 1]
+                            res = list(r.scores.keys())[index]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalIncapacity + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                     else:
                         return format_html('<a href="{}"><span style="color: #cc0033; font-weight: bold;">{}</span></a>', url, self.culturalIncapacity)
@@ -177,11 +177,11 @@ class Responses(models.Model):
                 else:                    
                     if r.status == True and 'culturalBlindnessresponse' in r.scores['category']:
                         if len(list(r.scores.keys())) == 2:
-                            res = list(r.scores.keys())[1]
+                            res = list(r.scores.keys())[0]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalBlindness + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                         else:
                             index = r.scores['category'].index('culturalBlindnessresponse')
-                            res = list(r.scores.keys())[index + 1]
+                            res = list(r.scores.keys())[index]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalBlindness + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                     else:
                         return format_html('<a href="{}"><span style="color: #cc0033; font-weight: bold;">{}</span></a>', url, self.culturalBlindness)
@@ -204,11 +204,11 @@ class Responses(models.Model):
                 else:                    
                     if r.status == True and 'culturalPreCompetenceresponse' in r.scores['category']:
                         if len(list(r.scores.keys())) == 2:
-                            res = list(r.scores.keys())[1]
+                            res = list(r.scores.keys())[0]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalPreCompetence + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                         else:
                             index = r.scores['category'].index('culturalPreCompetenceresponse')
-                            res = list(r.scores.keys())[index + 1]
+                            res = list(r.scores.keys())[index]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalPreCompetence + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                     else:
                         return format_html('<a href="{}"><span style="color: #cc0033; font-weight: bold;">{}</span></a>', url, self.culturalPreCompetence)
@@ -231,11 +231,11 @@ class Responses(models.Model):
                 else:                    
                     if r.status == True and 'culturalCompetenceresponse' in r.scores['category']:
                         if len(list(r.scores.keys())) == 2:
-                            res = list(r.scores.keys())[1]
+                            res = list(r.scores.keys())[0]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalCompetence + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                         else:
                             index = r.scores['category'].index('culturalCompetenceresponse')
-                            res = list(r.scores.keys())[index + 1]
+                            res = list(r.scores.keys())[index]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalCompetence + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                     else:
                         return format_html('<a href="{}"><span style="color: #cc0033; font-weight: bold;">{}</span></a>', url, self.culturalCompetence)
@@ -263,11 +263,11 @@ class Responses(models.Model):
                 else:                    
                     if r.status == True and 'culturalProficiencyresponse' in r.scores['category']:
                         if len(list(r.scores.keys())) == 2:
-                            res = list(r.scores.keys())[1]
+                            res = list(r.scores.keys())[0]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalProficiency + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                         else:
                             index = r.scores['category'].index('culturalProficiencyresponse')
-                            res = list(r.scores.keys())[index + 1]
+                            res = list(r.scores.keys())[index]
                             return format_html('<a href="{}"><span style="color: #008000; font-weight: bold;">{}</span></a>', url, self.culturalProficiency + ' Scores: ' + str(r.scores[res])[1:-1] + ' Total: ' + str(sum(r.scores[res])/len(r.scores[res])))
                     else:
                         return format_html('<a href="{}"><span style="color: #cc0033; font-weight: bold;">{}</span></a>', url, self.culturalProficiency)
