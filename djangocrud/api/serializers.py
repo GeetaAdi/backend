@@ -58,7 +58,11 @@ class LoginSerializer(serializers.Serializer):
 class ProfileSerializer(serializers.ModelSerializer):
     location = serializers.SerializerMethodField()
     gender = serializers.SerializerMethodField()
-    date = serializers.SerializerMethodField()
+    preSurveydate = serializers.SerializerMethodField()
+    responsesdate = serializers.SerializerMethodField()
+    cpcqdate = serializers.SerializerMethodField()
+    scoredate = serializers.SerializerMethodField()
+    postSurveydate = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
     class Meta:
         model = Profile
@@ -86,9 +90,41 @@ class ProfileSerializer(serializers.ModelSerializer):
             else:
                 return None
 
-    def get_date(self, obj):
+    def get_preSurveydate(self, obj):
         if PreSurvey.objects.filter(user = obj.user).exists():
             last = PreSurvey.objects.filter(username = obj.user).last()
+            if last is not None:
+                return last.created
+            else:
+                return None
+
+    def get_responsesdate(self, obj):
+        if Responses.objects.filter(user = obj.user).exists():
+            last = Responses.objects.filter(username = obj.user).last()
+            if last is not None:
+                return last.created
+            else:
+                return None
+
+    def get_cpcqdate(self, obj):
+        if cpcq.objects.filter(user = obj.user).exists():
+            last = cpcq.objects.filter(username = obj.user).last()
+            if last is not None:
+                return last.created
+            else:
+                return None
+
+    def get_scoredate(self, obj):
+        if Scores.objects.filter(user = obj.user).exists():
+            last = Scores.objects.filter(username = obj.user).last()
+            if last is not None:
+                return last.created
+            else:
+                return None
+
+    def get_postSurveydate(self, obj):
+        if PostSurvey.objects.filter(user = obj.user).exists():
+            last = PostSurvey.objects.filter(username = obj.user).last()
             if last is not None:
                 return last.created
             else:
@@ -198,7 +234,7 @@ class PostSurveyQuestionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostSurveyQuestions
         # fields = '__all__'
-        fields = ['question1','question2','question3','question4','question5','question6','question7','question8','question9', 'question10']
+        fields = ['question1','question2','question3','question4','question5','question6','question7','question8','question9', 'question10', 'question11']
 
 
 class FinalFeedbackSerializer(serializers.ModelSerializer):

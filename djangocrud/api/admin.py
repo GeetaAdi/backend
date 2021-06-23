@@ -35,7 +35,7 @@ class ExportCsvMixin:
         field_names = [field.name for field in meta.fields]
 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(str(meta).replace('api.',''))
         writer = csv.writer(response)
 
         writer.writerow(field_names)
@@ -50,46 +50,58 @@ class ResponseAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['username','topic','cultural_Destructiveness', 'cultural_Incapacity', 'cultural_Blindness', 'cultural_PreCompetence','cultural_Competence','cultural_Proficiency','description','duration']
     search_fields = ['username','topic']
     actions = ["export_as_csv"]
-class PreSurveyAdmin(admin.ModelAdmin):
-    list_display = ['username','q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12','q13','q14','q15','q16','q17','q18','q19','q20','duration', 'consent']
+class PreSurveyAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ['username','q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12','q13','q14','q15','q16','q17','q18','q19','q20', 'q21','duration', 'consent']
     search_fields = ['username']
+    actions = ["export_as_csv"]
 
-class PostSurveyAdmin(admin.ModelAdmin):
-    list_display = ['username','q1','q2','q3','q4','q5','q6','q7','q8','q9','consent']
+class PostSurveyAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ['username','q1','q2','q3','q4','q5','q6','q7','q8','q9', 'q10', 'q11', 'consent']
     search_fields = ['username']
+    actions = ["export_as_csv"]
 
-class FinalFeedbackAdmin(admin.ModelAdmin):
+class FinalFeedbackAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['username','q1','q2','q3','q4','q5','q6','q7']
     search_fields = ['username']
+    actions = ["export_as_csv"]
 
-class CPCQResponsesAdmin(admin.ModelAdmin):
+class CPCQResponsesAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['user', 'topic', 'culturalDestructivenessresponse','culturalIncapacityresponse','culturalBlindnessresponse','culturalPreCompetenceresponse','culturalCompetenceresponse','culturalProficiencyresponse','scores', 'comment1','comment2','duration']
     search_fields = ['user','topic']
+    actions = ["export_as_csv"]
 
-class ScoresAdmin(admin.ModelAdmin):
+class ScoresAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['user', 'username', 'totalScore', 'duration','email_send']
     search_fields = ['user','username']
+    actions = ["export_as_csv"]
 
-class AttitudeAdmin(admin.ModelAdmin):
+class AttitudeAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['id','question1','question2','question3','question4','question5','question6']
+    actions = ["export_as_csv"]
 
-class EmpathyAdmin(admin.ModelAdmin):
+class EmpathyAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['id','question1','question2','question3','question4','question5','question6']
+    actions = ["export_as_csv"]
 
-class PolicyAdmin(admin.ModelAdmin):
+class PolicyAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['id','question1','question2','question3','question4','question5','question6']
+    actions = ["export_as_csv"]
 
-class ProfessionalismAdmin(admin.ModelAdmin):
+class ProfessionalismAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['id','question1','question2','question3','question4','question5','question6']
+    actions = ["export_as_csv"]
 
-class TeachingAdmin(admin.ModelAdmin):
+class TeachingAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['id','question1','question2','question3','question4','question5','question6']
+    actions = ["export_as_csv"]
 
-class PreSurveyQuestionsAdmin(admin.ModelAdmin):
+class PreSurveyQuestionsAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ['id','question1','question2','question3','question4','question5','question6','question7','question8','question9','question10','question11','question12','question13','question14','question15','question16','question17','question18','question19','question20', 'question21']
+    actions = ["export_as_csv"]
 
-class PostSurveyQuestionsAdmin(admin.ModelAdmin):
-    list_display = ['id','question1','question2','question3','question4','question5','question6','question7','question8','question9', 'question10']
+class PostSurveyQuestionsAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ['id','question1','question2','question3','question4','question5','question6','question7','question8','question9', 'question10' ,'question10']
+    actions = ["export_as_csv"]
 
 admin.site.register(Attitude, AttitudeAdmin)
 admin.site.register(Empathy, EmpathyAdmin)

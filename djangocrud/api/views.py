@@ -22,7 +22,7 @@ from .models import PreSurvey
 from .models import PostSurvey
 from .models import FinalFeedback
 import random
-
+import collections
 # from djangocrud.api.serializers import UserSerializer
 
 
@@ -43,6 +43,7 @@ from .forms import ScoreForm, RadioForm1, RadioForm2, RadioForm3, RadioForm4
 
 from django.conf import settings
 from django.core.mail import send_mail
+from datetime import date
 
 def email(request):
     user_id = request.GET.get('user_id', '')
@@ -56,6 +57,7 @@ def email(request):
             count = count + (len(each.scores) - 1)   
     if count >= 5:
         score.email_status = True
+        score.created = date.today()
         score.save()
         s = Status.objects.get(username = user.username)
         s.scoresstatus = True
@@ -64,13 +66,13 @@ def email(request):
         # if serializer_.is_valid():
         #     serializer_.save()    
         subject = 'CPCDP View Your Results'
-        message = f"Hi {user.first_name.capitalize()}, thank you for your current engagement with the Cultural Proficiency Continuum Web-Based Dialogic Protocol: A Majority-Minority PreK-12 Schooling Context. Your reactions to vignettes have been reviewed and scored by your facilitator. You can now login and view your facilitator's comments and scores. Please login at https://cpcdp-vcu.cs.odu.edu/ to review your comments and scores."
+        message = f"Hi {user.first_name.capitalize()}, thank you for your current engagement with the Cultural Proficiency Continuum Web-Based Dialogic Protocol: A Majority-Minority PreK-12 Schooling Context. Your reactions to vignettes have been reviewed and scored by your facilitator. You can now login and view your facilitator's comments and scores. Please login at https://cpcdp-vcu.web.app/ to review your comments and scores."
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
         send_mail( subject, message, email_from, recipient_list )
-        return HttpResponseRedirect('http://cpcdp.tedoratech.com/admin/api/scores/')
+        return HttpResponseRedirect('https://cpcdp.co.vu/admin/api/scores/')
     else:
-        return HttpResponseRedirect('http://cpcdp.tedoratech.com/admin/api/scores/')
+        return HttpResponseRedirect('https://cpcdp.co.vu/admin/api/scores/')
 
 def scores(request):
     response_id = request.GET.get('response_id', '')
@@ -155,17 +157,17 @@ def scores(request):
     culturalIncapacityresponse__exact = '', culturalBlindnessresponse__exact = '', culturalPreCompetenceresponse__exact = '', culturalCompetenceresponse__exact = '', culturalProficiencyresponse__exact = '')
     for obj in queryset:
         if obj.culturalDestructivenessresponse != '' and field == 'culturalDestructivenessresponse':
-            final.append(obj.culturalDestructivenessresponse)
+            final.append(collections.OrderedDict(sorted(obj.culturalDestructivenessresponse.items())))
         if obj.culturalIncapacityresponse != '' and field == 'culturalIncapacityresponse':
-            final.append(obj.culturalIncapacityresponse)
+            final.append(collections.OrderedDict(sorted(obj.culturalIncapacityresponse.items())))
         if obj.culturalBlindnessresponse != '' and field == 'culturalBlindnessresponse':
-            final.append(obj.culturalBlindnessresponse)
+            final.append(collections.OrderedDict(sorted(obj.culturalBlindnessresponse.items())))
         if obj.culturalPreCompetenceresponse != '' and field == 'culturalPreCompetenceresponse':
-            final.append(obj.culturalPreCompetenceresponse)
+            final.append(collections.OrderedDict(sorted(obj.culturalPreCompetenceresponse.items())))
         if obj.culturalCompetenceresponse != '' and field == 'culturalCompetenceresponse':
-            final.append(obj.culturalCompetenceresponse)
+            final.append(collections.OrderedDict(sorted(obj.culturalCompetenceresponse.items())))
         if obj.culturalProficiencyresponse != '' and field == 'culturalProficiencyresponse':
-            final.append(obj.culturalProficiencyresponse)
+            final.append(collections.OrderedDict(sorted(obj.culturalProficiencyresponse.items())))
     if request.method == 'POST':
         form = ScoreForm(request.POST)
         form1 = RadioForm1(request.POST)
@@ -238,7 +240,7 @@ def scores(request):
                             if each_ != 'category':
                                 avg.append(sum(each.scores[each_]) / len(each.scores[each_]))
                 Scores.objects.create(user = user, username=user.username, totalScore=sum(avg) / len(avg), duration = duration)            
-            return HttpResponseRedirect('http://cpcdp.tedoratech.com/admin/api/responses/')
+            return HttpResponseRedirect('https://cpcdp.co.vu/admin/api/responses/')
     else:
         form = ScoreForm()
         rForms = {}
